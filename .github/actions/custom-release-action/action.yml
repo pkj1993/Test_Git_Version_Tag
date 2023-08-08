@@ -1,0 +1,26 @@
+name: 'Custom Release Action'
+description: 'Handles versioning, tagging, and release creation using SemVer'
+author: 'prasanna'
+
+inputs:
+  github-token:
+    description: 'GitHub token for repository access'
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set Up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+
+    - name: Run Custom Python Script
+      run: |
+        python /path/to/your/script.py
+      env:
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+
