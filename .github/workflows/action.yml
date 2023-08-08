@@ -2,6 +2,8 @@ name: testing
 
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   test_tag:
     name: Projrct-tag1
