@@ -2,6 +2,8 @@ name: testing
 
 on:
   workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   test_tag:
     name: Projrct-tag1
@@ -17,8 +19,17 @@ jobs:
         with:
          python-version: '3.x'
 
+      - name: python3 -m pip install pygithub
+        run: python3 -m pip install pygithub
+
+      - name: set your account
+        run: |
+          git config --global user.email "pkj161293@gmail.com"
+          git config --global user.name "pkj1993"       
+
       - name: Run Custom Python Script
         run: |
           python ./.github/actions/custom-release-action/script.py
         env:
           GITHUB_TOKEN: ${{secrets.REPO_TOKEN }}
+          INPUT_VERSION_BUMP: ${{ github.event.inputs.version_bump }}
