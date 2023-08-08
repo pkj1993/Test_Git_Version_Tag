@@ -35,6 +35,7 @@ def main():
     repo = g.get_repo('pkj1993/Test_Git_Version_Tag')  # Replace with your repo details
 
     commit_sha = os.environ.get('GITHUB_SHA')
+    print(f"Input version bump: {version_bump}")
     version_bump = os.environ.get('INPUT_VERSION_BUMP', 'Bugfix')  # Default to 'Bugfix'
     current_version = '1.0.0'  # Get the current version from your project
 
