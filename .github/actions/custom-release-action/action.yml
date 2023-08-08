@@ -1,26 +1,27 @@
-name: 'Custom Release Action'
-description: 'Handles versioning, tagging, and release creation using SemVer'
-author: 'prasanna'
+name: testing 
 
-inputs:
-  github-token:
-    description: 'GitHub token for repository access'
-    required: true
+on:
+  workflow_dispatch:
+jobs:
+  test_tag:
+    name: Projrct-tag1
+    runs-on: ubuntu-latest
+    env:  # Define environment variables
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
 
-runs:
-  using: 'composite'
-  steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Set Up Python
-      uses: actions/setup-python@v2
-      with:
+     - name: Set Up Python
+       uses: actions/setup-python@v2
+       with:
         python-version: '3.x'
 
-    - name: Run Custom Python Script
-      run: |
-        python ./.github/actions/custom-release-action/script.py
-      env:
-        GITHUB_TOKEN: ${{secrets.REPO_TOKEN }}
+     - name: Run Custom Python Script
+       run: |
+         python ./.github/actions/custom-release-action/script.py
+       env:
+         GITHUB_TOKEN: ${{secrets.REPO_TOKEN }}        
 
+        
+        
