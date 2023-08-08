@@ -22,5 +22,5 @@ runs:
       run: |
         python ./.github/actions/custom-release-action/script.py
       env:
-        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GITHUB_TOKEN: ${{secrets.REPO_TOKEN }}
 
