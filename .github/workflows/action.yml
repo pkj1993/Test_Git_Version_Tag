@@ -18,7 +18,12 @@ jobs:
          python-version: '3.x'
 
       - name: python3 -m pip install pygithub
-        run: python3 -m pip install pygithub   
+        run: python3 -m pip install pygithub
+
+      - name: set your account
+        run: |
+          git config --global user.email "pkj161293@gmail.com"
+          git config --global user.name "pkj1993"       
 
       - name: Run Custom Python Script
         run: |
