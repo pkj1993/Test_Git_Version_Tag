@@ -20,7 +20,7 @@ runs:
 
     - name: Run Custom Python Script
       run: |
-        python /path/to/your/script.py
+        python ./.github/actions/custom-release-action/script.py
       env:
         GITHUB_TOKEN: ${{ inputs.github-token }}
 
