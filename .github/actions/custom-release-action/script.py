@@ -35,8 +35,8 @@ def main():
     repo = g.get_repo('pkj1993/Test_Git_Version_Tag')  # Replace with your repo details
 
     commit_sha = os.environ.get('GITHUB_SHA')
-    print(f"Input version bump: {version_bump}")
     version_bump = os.environ.get('INPUT_VERSION_BUMP', 'Bugfix')  # Default to 'Bugfix'
+    print(f"Input version bump: {version_bump}")
     current_version = '1.0.0'  # Get the current version from your project
 
     next_version = increment_version(current_version, version_bump)
