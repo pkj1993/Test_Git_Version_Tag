@@ -18,7 +18,7 @@ def main():
 
     # Create a GitHub release
     g = Github(os.environ['GITHUB_TOKEN'])
-    repo = g.get_repo('yourusername/yourrepository')
+    repo = g.get_repo('pkj1993/Test_Git_Version_Tag')
     repo.create_git_release(
         tag=next_version,
         name=f'Release {next_version}',
