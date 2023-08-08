@@ -19,7 +19,7 @@ def create_symmetric_tag(repo, tag_name, commit_sha, tag_message):
 def main():
     github_token = os.environ.get('GITHUB_TOKEN')
     g = Github(github_token)
-    repo = g.get_repo('yourusername/yourrepository')  # Replace with your repo details
+    repo = g.get_repo('pkj1993/Test_Git_Version_Tag')  # Replace with your repo details
 
     commit_sha = os.environ.get('GITHUB_SHA')
     tag_name = os.environ.get('INPUT_TAG_NAME', 'v1.0.0')  # Default to v1.0.0 if not specified
