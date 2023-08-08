@@ -17,6 +17,9 @@ jobs:
         with:
          python-version: '3.x'
 
+      - name: python3 -m pip install pygithub
+        run: python3 -m pip install pygithub   
+
       - name: Run Custom Python Script
         run: |
           python ./.github/actions/custom-release-action/script.py
