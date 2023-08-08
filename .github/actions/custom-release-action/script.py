@@ -1,30 +1,31 @@
+# /.github/actions/create-symmetric-tag/script.py
 import os
-import re
 from github import Github
 
-def determine_next_version(current_version):
-    major, minor, patch = map(int, current_version.split('.'))
-    # Logic to determine next version based on SemVer rules
-    next_version = f'{major}.{minor}.{patch + 1}'
-    return next_version
+def create_symmetric_tag(repo, tag_name, commit_sha, tag_message):
+    # Create a local tag
+    os.system(f'git tag -a {tag_name} {commit_sha} -m "{tag_message}"')
 
-def main():
-    current_version = '1.0.0'  # Retrieve the current version from your project
-    next_version = determine_next_version(current_version)
-
-    # Tag the repository with the new version
-    os.system(f'git tag -a {next_version} -m "Version {next_version}"')
-    os.system('git push --tags')
+    # Push the local tag to remote
+    os.system(f'git push origin {tag_name}')
 
     # Create a GitHub release
-    g = Github(os.environ['GITHUB_TOKEN'])
-    repo = g.get_repo('pkj1993/Test_Git_Version_Tag')
     repo.create_git_release(
-        tag=next_version,
-        name=f'Release {next_version}',
-        message=f'Changelog and release notes for {next_version}'
+        tag=tag_name,
+        name=f'Release {tag_name}',
+        message=f'Release notes for {tag_name}'
     )
+
+def main():
+    github_token = os.environ.get('GITHUB_TOKEN')
+    g = Github(github_token)
+    repo = g.get_repo('yourusername/yourrepository')  # Replace with your repo details
+
+    commit_sha = os.environ.get('GITHUB_SHA')
+    tag_name = os.environ.get('INPUT_TAG_NAME', 'v1.0.0')  # Default to v1.0.0 if not specified
+    tag_message = f"Version {tag_name}"
+
+    create_symmetric_tag(repo, tag_name, commit_sha, tag_message)
 
 if __name__ == '__main__':
     main()
-
