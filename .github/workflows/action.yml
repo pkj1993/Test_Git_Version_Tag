@@ -1,0 +1,24 @@
+name: testing 
+
+on:
+  workflow_dispatch:
+jobs:
+  test_tag:
+    name: Projrct-tag1
+    runs-on: ubuntu-latest
+    env:  # Define environment variables
+      GITHUB_TOKEN: ${{ secrets.PAT }}
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+         python-version: '3.x'
+
+      - name: Run Custom Python Script
+        run: |
+          python ./.github/actions/custom-release-action/script.py
+        env:
+          GITHUB_TOKEN: ${{secrets.REPO_TOKEN }}
