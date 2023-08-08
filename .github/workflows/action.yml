@@ -32,3 +32,4 @@ jobs:
           python ./.github/actions/custom-release-action/script.py
         env:
           GITHUB_TOKEN: ${{secrets.REPO_TOKEN }}
+          INPUT_VERSION_BUMP: ${{ github.event.inputs.version_bump }}
