@@ -1,0 +1,19 @@
+name: Release Workflow
+
+on:
+  push:
+    branches:
+      - main  # Change this to your main branch name
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Run Custom Release Action
+        uses: ./.github/actions/custom-release-action
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
